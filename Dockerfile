@@ -3,6 +3,7 @@ FROM php:7.3-fpm
 MAINTAINER Mathieu LESNIAK <mathieu@lesniak.fr>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y --no-install-recommends \
+    nginx \
     apt-utils \
     locales \
     wget \
@@ -61,5 +62,5 @@ RUN usermod -u 1000 www-data
 WORKDIR /var/www/
 EXPOSE 80
 
-ENTRYPOINT ["/etc/entrypoint.sh"]
+ENTRYPOINT ["sh", "/etc/entrypoint.sh"]
 
