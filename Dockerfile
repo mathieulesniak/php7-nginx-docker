@@ -13,7 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y --no-
     wget \
     curl \
     git \
-    ssmtp
+    ssmtp \
     libmemcached-dev \
     libxml2-dev \
     libfreetype6-dev \
