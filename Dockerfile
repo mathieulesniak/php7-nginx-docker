@@ -2,18 +2,13 @@ FROM php:7.3-fpm
 
 MAINTAINER Mathieu LESNIAK <mathieu@lesniak.fr>
 
-# Set Locale to fr_FR.UTF8
-RUN cp /etc/locale.gen /etc/locale.gen.sav \
-    && echo "fr_FR.UTF-8 UTF-8" > /etc/locale.gen \
-    && locale-gen
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y --no-install-recommends \
     apt-utils \
     locales \
     wget \
     curl \
     git \
-    ssmtp \
+    msmtp \
     libmemcached-dev \
     libxml2-dev \
     libfreetype6-dev \
@@ -26,6 +21,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y --no-
     libzip-dev \
     libmagickwand-dev \
     unzip
+
+# Set Locale to fr_FR.UTF8
+RUN echo "fr_FR.UTF-8 UTF-8" > /etc/locale.gen \
+    && locale-gen
 
 RUN docker-php-ext-configure pcntl --enable-pcntl \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-xpm-dir=/usr/include/ \
